@@ -1,0 +1,25 @@
+FROM golang:1.14
+
+# Set environment variables
+ENV GOPATH /go
+
+# Copy code
+COPY ./spellchecker /go/src/spellchecker
+
+# Install python3 & pip
+RUN apt-get update && apt-get install -y python3-pip
+
+# Set working directory
+WORKDIR /go/src/spellchecker
+
+# Install python script dependencies
+RUN pip3 install -r requirements.txt
+
+# Build code
+RUN go build spellchecker
+
+# Expose port to other docker containers
+EXPOSE 8081/tcp
+
+# Start server
+CMD ./spellchecker

@@ -1,0 +1,33 @@
+extends layout
+
+block content
+    h1.align_center= title
+    hr
+    .main.container
+        .row
+            .col-md-6.col-md-offset-3
+                h5.text-white.text-center.font-weight-bold.mb-4 To continue, log into the Library Management System.
+                form(method='post', action='')
+                    .form-group
+                        input#email.form-control.mx-auto(type='text'
+                            placeholder='Email address' name='email' required
+                        value=(user === undefined ? '' : user.email))
+
+                    .form-group
+                        input#password.form-control.mx-auto(type='password'
+                            placeholder='Password' name='password' required
+                        value=(user === undefined ? '' : user.password))
+
+
+                    button.btn.btn-outline-primary.btn-block.btn-style(type='submit') Log in
+
+                if errors
+                    ul.mt-2
+                        for error in errors
+                            li.text-danger!= error.msg
+
+                hr.mt-5.mr-5
+                h5.text-white.text-center.font-weight-bold.mb-4 Don't have an account?
+
+                a.button.btn.btn-outline-primary.btn-block.btn-style(href="/register") Register
+

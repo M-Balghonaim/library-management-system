@@ -1,0 +1,27 @@
+extends layout
+
+block content
+    h1.align_center= title
+    hr
+    if notification !== undefined
+        ul.mt-2
+            li.text-success!= notification
+    if reservations.length === 0
+        h4 No reservations found.
+    else
+        table
+            tr
+                th Id
+                th Book Title
+                th Reserved On
+                th Is Issued
+                th
+            each reservation in reservations
+                tr
+                    th #{reservation.id}
+                    th #{reservation.book.title}
+                    th #{reservation.reservation_date}
+                    th #{reservation.is_issued}
+                    if reservation.is_issued === false
+                        th
+                            a(href='/reservation/cancel/' + reservation.id) Cancel

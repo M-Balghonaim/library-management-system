@@ -1,0 +1,25 @@
+extends layout
+
+block content
+    h1.align_center= title
+    hr
+    if reservations.length === 0
+        h4 There are no reservations.
+    else
+        table
+            tr
+                th Id
+                th Reserved By
+                th Book Title
+                th Reserved On
+                th
+            each reservation in reservations
+                tr
+                    th #{reservation.id}
+                    th #{reservation.reserved_by.email}
+                    th #{reservation.book.title}
+                    th #{reservation.reservation_date}
+                    th
+                        a(href='/reservation/cancel/' + reservation.id) Cancel
+                    th
+                        a(href='/reservation/issue/' + reservation.id) Issue

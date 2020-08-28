@@ -1,0 +1,27 @@
+version: '3'
+services:
+  spellchecker:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-spellchecker
+  db:
+    image: "postgres:latest"
+    restart: always
+    environment:
+      POSTGRES_DB: lms-db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+  lms:
+    ports:
+      - "3000:3000"
+    build:
+      context: .
+      dockerfile: ./Dockerfile-lms
+    # Ensure this server only starts once the database is up and running.
+    command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; node ./bin/www'
+    depends_on:
+      - spellchecker
+      - db
+    environment:
+      - DOCKER_DB_HOST=db
+      - SPELLCHECKER_HOST=spellchecker

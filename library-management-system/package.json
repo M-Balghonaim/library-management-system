@@ -1,0 +1,23 @@
+{
+  "name": "library-management-system",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "bcrypt": "^4.0.1",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "express-session": "^1.17.0",
+    "express-validator": "^6.4.0",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "pg": "^7.18.2",
+    "pug": "2.0.0-beta11",
+    "requestify": "^0.2.5",
+    "typeorm": "^0.2.24",
+    "uuid": "^7.0.2"
+  }
+}

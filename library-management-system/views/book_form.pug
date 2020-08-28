@@ -1,0 +1,28 @@
+extends layout
+
+block content
+    h1.align_center= title
+    hr
+    form(method='POST' action='')
+        div.form-group
+            label(for='title') Title:
+            input#title.form-control(type='text', placeholder='Title' name='title' required='true' value=(book === undefined ? '' : book.title) )
+        div.form-group
+            label(for='author') Author:
+            input#author.form-control(type='text', placeholder='Author' name='author' required='true' value=(book === undefined ? '' : book.author) )
+        div.form-group
+            label(for='edition') Edition:
+            input#edition.form-control(type='number', placeholder='Edition' name='edition' required='true' value=(book === undefined ? '' : book.edition))
+        div.form-group
+            label(for='isbn') ISBN:
+            input#isbn.form-control(type='number', placeholder='ISBN' name='isbn' required='true' value=(book === undefined ? '' : book.isbn))
+        div.form-group
+            label(for='copies') Copies:
+            input#copies.form-control(type='number', placeholder='# Copies' name='copies' required='true' value=(book === undefined ? '' : book.copies))
+
+        button.btn.btn-primary(type='submit') Submit
+
+    if errors
+        ul
+            for error in errors
+                li!= error.msg

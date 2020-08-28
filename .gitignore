@@ -1,0 +1,4 @@
+./library-management-system/node_modules/
+./spellchecker/word_counts.txt
+./spellchecker/big.txt
+./spellchecker/.idea

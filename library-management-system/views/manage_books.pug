@@ -1,0 +1,31 @@
+extends layout
+
+block content
+    h1.align_center= title
+    hr
+    a(href='/book/add') Add Book
+    if books.length === 0
+        h4 There are no books.
+    else
+        table
+            tr
+                th Id
+                th Title
+                th Author
+                th Edition
+                th ISBN
+                th status
+                th
+            each book in books
+                tr
+                    th #{book.id}
+                    th #{book.title}
+                    th #{book.author}
+                    th #{book.edition}
+                    th #{book.isbn}
+                    th #{book.status}
+                    th
+                        a(href='/book/edit/' + book.id) Edit
+                    th
+                        a(href='/book/delete/' + book.id) Delete
+

@@ -1,0 +1,10 @@
+FROM node:10
+
+# Bundle app source
+COPY ./library-management-system /home/library-management-system
+
+# Set working directory
+WORKDIR /home/library-management-system
+
+# Pre-install project dependencies
+RUN npm install

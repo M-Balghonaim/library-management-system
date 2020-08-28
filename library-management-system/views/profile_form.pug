@@ -1,0 +1,52 @@
+extends layout
+
+block content
+    h1.align_center= title
+    hr
+    if notification !== undefined
+        ul.mt-2
+            li.text-success!= notification
+    .main.container
+        .row
+            .col-md-6.col-md-offset-3
+                h3 Sign up with your email address
+                form(method='post', action='')
+                    div.form-group
+                        label.text-white(for='name') Name:
+                        input#name.form-control(type='text'
+                            required name='name' maxlength=70 minlength=2
+                            placeholder="Name"
+                            value=(undefined === userProfile ? '' : userProfile.name))
+                    div.form-group
+                        label.text-white(for='date_of_birth') Date of birth:
+                        input#date_of_birth.form-control(type='date'
+                            required, name='date_of_birth'
+                            value=(undefined === userProfile ? '' : userProfile.date_of_birth))
+                    div.form-group
+                        label.text-white(for='phone_number') Phone Number:
+                        input#phone_number.form-control(type='tel'
+                            required name='phone_number' maxlength=35 minlength=7
+                            placeholder="Phone Number"
+                            value=(undefined === userProfile ? '' : userProfile.phone_number))
+                    div.form-group
+                        label.text-white(for='address') Address:
+                        input#address.form-control(type='text'
+                            required name='address' maxlength=255 minlength=3
+                            placeholder="Address"
+                            value=(undefined === userProfile ? '' : userProfile.address))
+                    // ONly admins should be able to change this field. This is enforced on the backend as well
+                    if user.type === 'admin'
+                        label.text-white(for='type') Type:
+                        input#type.form-control(type='text'
+                            required name='type' maxlength=10 minlength=3
+                            placeholder="Account Type"
+                            value=(undefined === userProfile ? '' : userProfile.type))
+                    button(type='submit') Update
+
+                if errors
+                    ul.mt-2
+                        for error in errors
+                            li.text-danger!= error.msg
+                hr
+                if user.type === 'admin'
+                    a(href='/user/profile/delete/' + userProfile.id data-confirm="Are you sure to delete your account?").delete Delete Account

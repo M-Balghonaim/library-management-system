@@ -1,0 +1,25 @@
+extends layout
+
+block content
+    h1.align_center= title
+    hr
+    if borrows.length === 0
+        h4 No borrowed books found.
+    else
+        table
+            tr
+                th Id
+                th Book Title
+                th Reserved On
+                th Borrow Date
+                th Due Date
+                th
+            each borrow in borrows
+                tr
+                    th #{borrow.id}
+                    th #{borrow.book.title}
+                    th #{borrow.reservation_date}
+                    th #{borrow.issue_date}
+                    th #{borrow.due_date}
+
+

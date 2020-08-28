@@ -1,0 +1,28 @@
+extends layout
+
+block content
+    h1.align_center= title
+    hr
+    table
+        tr
+            th Id
+            th Name
+            th Email
+            th Phone Number
+            th Date of Birth
+            th Address
+            th Type
+            th
+        each user in users
+            tr
+                th #{user.id}
+                th #{user.name}
+                th #{user.email}
+                th #{user.phone_number}
+                th #{user.date_of_birth}
+                th #{user.address}
+                th #{user.type}
+                th
+                    a(href='/user/profile/' + user.id) Edit
+                th
+                    a(href='/user/profile/delete/' + user.id) Delete
